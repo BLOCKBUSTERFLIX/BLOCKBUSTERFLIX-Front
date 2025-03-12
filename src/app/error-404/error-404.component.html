@@ -1,0 +1,104 @@
+<style>
+
+  html, body {
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff6a00, #ee0979);
+      color: white;
+      text-align: center;
+      overflow: hidden;
+  }
+  .container {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: zoomIn 1s ease-out;
+  }
+  h1 {
+      font-size: 200px;
+      font-weight: bold;
+      letter-spacing: 20px;
+      text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+      animation: textPop 1.5s ease-out;
+  }
+  h2 {
+      font-size: 40px;
+      margin-top: 20px;
+      opacity: 0.85;
+      animation: fadeIn 2s ease-out;
+  }
+  .emoji {
+      font-size: 120px;
+      margin-top: 30px;
+      animation: bounce 2s infinite alternate;
+  }
+  a {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 20px 40px;
+      background: #fff;
+      color: #333;
+      font-size: 22px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: transform 0.3s, box-shadow 0.3s;
+      transform: scale(1);
+  }
+  a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+  }
+  @keyframes zoomIn {
+      from {
+          transform: scale(0.5);
+          opacity: 0;
+      }
+      to {
+          transform: scale(1);
+          opacity: 1;
+      }
+  }
+  @keyframes textPop {
+      0% {
+          transform: scale(0.5);
+          opacity: 0;
+      }
+      50% {
+          transform: scale(1.1);
+          opacity: 1;
+      }
+      100% {
+          transform: scale(1);
+      }
+  }
+  @keyframes fadeIn {
+      from {
+          opacity: 0;
+      }
+      to {
+          opacity: 1;
+      }
+  }
+  @keyframes bounce {
+      0% {
+          transform: translateY(0);
+      }
+      100% {
+          transform: translateY(-30px);
+      }
+  }
+</style>
+
+<div class="container">
+  <h1>404</h1>
+  <h2>¡Ups! Esta página no existe...</h2>
+  <div class="emoji">😱</div>
+  <a href="/">Volver al inicio</a>
+</div>
