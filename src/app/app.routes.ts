@@ -3,7 +3,8 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
     {
         path: '', title: 'home', loadComponent: () => import('./home/home.component').then(m => m.HomeComponent), children: [
-            { path: 'crud/:table', loadComponent: () => import('./principal/principal.component').then(m => m.PrincipalComponent) },
+            { path: '', loadComponent: () => import('./principal/principal.component').then(m => m.PrincipalComponent) },
+            { path: 'crud/:table', loadComponent: () => import('./entity-read-delete/entity-read-delete.component').then(m => m.EntityReadDeleteComponent) },
         ]
     }
 ];

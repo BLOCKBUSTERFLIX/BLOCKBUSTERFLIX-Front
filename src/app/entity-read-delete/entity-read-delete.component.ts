@@ -6,13 +6,13 @@ import { CRUDService } from '../crud.service';
 import { timeout } from 'rxjs';
 
 @Component({
-  selector: 'app-principal',
+  selector: 'app-entity-read-delete',
   standalone: true,
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './principal.component.html',
-  styleUrl: './principal.component.css'
+  templateUrl: './entity-read-delete.component.html',
+  styleUrl: './entity-read-delete.component.css'
 })
-export class PrincipalComponent {
+export class EntityReadDeleteComponent {
   table: string = '';
   msg: string = "Cargando..."
   cargando: boolean = false
