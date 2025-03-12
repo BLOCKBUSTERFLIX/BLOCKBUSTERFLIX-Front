@@ -34,7 +34,7 @@ export class EntityReadDeleteComponent {
       timeout(10000)
     ).subscribe(
       (response) => {
-        if(response.data){
+        if (response.data) {
           this.data = response.data;
         }
         this.msg = response.msg;
@@ -49,13 +49,13 @@ export class EntityReadDeleteComponent {
     );
   }
 
-  tableInfo(){
+  tableInfo() {
     this.crudService.info(this.table).pipe(
       timeout(10000)
     ).subscribe(
       (response) => {
         console.log(response)
-        if(response){
+        if (response) {
           this.columns = response;
         }
       },
@@ -70,6 +70,22 @@ export class EntityReadDeleteComponent {
 
   }
 
+  delete(id: number) {
+    this.crudService.delete(this.table, id).pipe(
+      timeout(10000)
+    ).subscribe(
+      (response) => {
+        this.all()
+      },
+      (error) => {
+        if (error.name === 'TimeoutError') {
+          this.all()
+        } else if (error.status === 404) {
+          this.router.navigate(['not-found']);
+        }
+      }
+    );
+  }
 
 
 }
