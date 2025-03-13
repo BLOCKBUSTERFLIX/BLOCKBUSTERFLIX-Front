@@ -4,6 +4,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CRUDService } from '../crud.service';
 import { timeout } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-entity-read-delete',
@@ -42,7 +43,7 @@ export class EntityReadDeleteComponent {
       (error) => {
         if (error.name === 'TimeoutError') {
           this.all()
-        } else if (error.status === 404) {
+        } else {
           this.router.navigate(['not-found']);
         }
       }
@@ -62,7 +63,7 @@ export class EntityReadDeleteComponent {
       (error) => {
         if (error.name === 'TimeoutError') {
           this.tableInfo()
-        } else if (error.status === 404) {
+        } else {
           this.router.navigate(['not-found']);
         }
       }
@@ -71,21 +72,50 @@ export class EntityReadDeleteComponent {
   }
 
   delete(id: number) {
-    this.crudService.delete(this.table, id).pipe(
-      timeout(10000)
-    ).subscribe(
-      (response) => {
-        this.all()
-      },
-      (error) => {
-        if (error.name === 'TimeoutError') {
-          this.all()
-        } else if (error.status === 404) {
-          this.router.navigate(['not-found']);
-        }
+    Swal.fire({
+      title: "Seguro que quieres eliminarlo?",
+      text: "No hay vuelta atras!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Estoy seguro!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.crudService.delete(this.table, id).pipe(
+          timeout(10000)
+        ).subscribe(
+          () => {
+            Swal.fire({
+              title: "Se ha eliminado!",
+              text: "Ya no existe el dato.",
+              icon: "success"
+            });
+            this.all()
+          },
+          (error) => {
+            if (error.name === 'TimeoutError') {
+              this.all()
+            } else if (error.status === 404) {
+              this.router.navigate(['not-found']);
+            } else {
+              Swal.fire({
+                title: "Hubo un error!",
+                text: "No se encontro el dato.",
+                icon: "error"
+              });
+
+            }
+          }
+        );
       }
-    );
+    });
+
   }
-
-
+  post(){
+    this.router.navigate([`new/${this.table}`]);
+  }
+  put(id: number){
+    this.router.navigate([`update/${this.table}/${id}`]);
+  }
 }

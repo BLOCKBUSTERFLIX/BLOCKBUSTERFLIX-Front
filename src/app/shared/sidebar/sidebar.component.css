@@ -1,0 +1,17 @@
+/* Aseguramos que el sidebar cubra toda la altura de la pantalla */
+.main-sidebar {
+  height: 100vh; /* 100% de la altura de la ventana */
+  position: fixed; /* Fija el sidebar en su lugar */
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Para asegurar que el contenido no quede debajo del sidebar */
+.content-wrapper {
+  margin-left: 250px; /* Ajusta este valor según el ancho de tu sidebar */
+}
+/* Aseguramos que el contenido del sidebar sea desplazable si es largo */
+.sidebar {
+  overflow-y: auto; /* Permite que el sidebar se desplace si el contenido excede la altura */
+}
