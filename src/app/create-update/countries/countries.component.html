@@ -1,0 +1,19 @@
+<div style="width: 100%; margin: auto;"> 
+  <form [formGroup]="countryForm" (ngSubmit)="onSubmit()">
+    <div class="card-body">
+      <div class="form-group">
+        <label for="country">País</label>
+        <input type="text" class="form-control" id="country" formControlName="country" placeholder="Ingrese el nombre del país">
+        <div *ngIf="errors.country" class="text-danger">
+          {{ errors.country[0] }}
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-primary" [disabled]="countryForm.invalid">
+        {{ countryId ? 'Actualizar País' : 'Crear País' }}
+      </button>
+    </div>
+  </form>
+</div>

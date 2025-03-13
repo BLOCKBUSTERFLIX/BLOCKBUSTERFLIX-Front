@@ -22,14 +22,17 @@ export class EntityReadDeleteComponent {
 
   constructor(private router: Router, private route: ActivatedRoute, private crudService: CRUDService, private fb: FormBuilder) {
     this.route.params.subscribe(params => {
+      this.data = []
       this.table = params['table'];
-      console.log(this.table);
       this.tableInfo();
       this.all();
       this.msg = "Cargando..."
     });
   }
 
+  onInit(){
+    
+  }
   all() {
     this.crudService.all(this.table).pipe(
       timeout(10000)
