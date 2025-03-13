@@ -18,7 +18,7 @@ private urlBase:string
     return this.http.post<any>(`${this.urlBase}${table}`, data);
   }
   put(table: string, id:any,  data: any): Observable<any>{
-    return this.http.put<any>(`${this.urlBase}${table}/update/${id}`, data);
+    return this.http.put<any>(`${this.urlBase}${table}/${id}`, data);
   }
   all(table: string): Observable<any>{
     return this.http.get<any>(`${this.urlBase}${table}/`);

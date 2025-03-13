@@ -17,7 +17,7 @@
             <thead>
             <tr>
               <th *ngFor="let colum of columns">{{ colum }}</th>
-              <th>Acción</th>
+              <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -26,17 +26,32 @@
               <td>
                 <div class="wrapper p-3">
                   <!-- Botón con dropdown -->
+                  <div class="dropdown">
+                    <button 
+                      class="button" style="border: none; background-color: transparent;"
+                      type="button" 
+                      data-bs-toggle="dropdown" 
+                      aria-expanded="false">
+                      <i class="bi bi-three-dots-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" style="cursor: pointer;" (click)="put(obj['id'])"><i class="fa fa-edit"></i> Editar</a></li>
+                      <li><a class="dropdown-item" style="cursor: pointer;" (click)="delete(obj['id'])"><i class="fa fa-trash"></i> Eliminar</a></li>
+                    </ul>
+                  </div>
+                  
+                   <!-- 
                   <div class="btn-group">
                       <button type="button" style="border: none; background-color: transparent;" data-toggle="dropdown">
                         <i class="bi bi-three-dots-vertical"></i>
                       </button>
                       <div class="dropdown-menu">
-                          <a class="dropdown-item" style="cursor: pointer;" (click)="put(obj['id'])"><i class="fa fa-edit"></i> Editar</a>
-                          <a class="dropdown-item" style="cursor: pointer;" (click)="delete(obj['id'])"><i class="fa fa-trash"></i> Eliminar</a>
+                          
+                          
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item text-danger"><i class="fa fa-sign-out-alt"></i> Salir</a>
                       </div>
-                  </div>
+                  </div> -->
                 </div>
               </td>
             </tr>
@@ -44,7 +59,7 @@
             <tfoot>
               <tr>
                 <th *ngFor="let colum of columns">{{ colum }}</th>
-                <th>Acción</th>
+                <th>Actions</th>
               </tr>
             </tfoot>
           </table>
