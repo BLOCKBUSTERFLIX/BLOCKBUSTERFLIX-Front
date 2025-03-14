@@ -17,12 +17,15 @@ export class EntityReadDeleteComponent {
   table: string = '';
   msg: string = "Cargando..."
   cargando: boolean = false
-  data: any
-  columns: any
+  data: any = []
+  columns: any = null
 
   constructor(private router: Router, private route: ActivatedRoute, private crudService: CRUDService, private fb: FormBuilder) {
     this.route.params.subscribe(params => {
+      this.cargando = false
       this.data = []
+      this.columns = null
+
       this.table = params['table'];
       this.tableInfo();
       this.all();
@@ -31,13 +34,14 @@ export class EntityReadDeleteComponent {
   }
 
   onInit(){
-    
+
   }
   all() {
     this.crudService.all(this.table).pipe(
       timeout(10000)
     ).subscribe(
       (response) => {
+        this.cargando = true
         if (response.data) {
           this.data = response.data;
         }

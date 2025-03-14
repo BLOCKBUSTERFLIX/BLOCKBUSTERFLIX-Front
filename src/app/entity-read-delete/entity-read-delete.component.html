@@ -1,5 +1,5 @@
 <div style="margin-left: 5rem;">
-  <div *ngIf="columns && data">
+  <div *ngIf="cargando">
     <div class="row">
       <!-- TABLE: LATEST ORDERS -->
       <div class="card">
@@ -8,7 +8,7 @@
           <div class="card-tools">
             <button (click)="post()" class="btn btn-tool">
               <i class="bi bi-plus-lg"></i>
-            </button>                      
+            </button>
           </div>
         </div>
         <!-- /.card-header -->
@@ -27,10 +27,10 @@
                 <div class="wrapper p-3">
                   <!-- Botón con dropdown -->
                   <div class="dropdown">
-                    <button 
+                    <button
                       class="button" style="border: none; background-color: transparent;"
-                      type="button" 
-                      data-bs-toggle="dropdown" 
+                      type="button"
+                      data-bs-toggle="dropdown"
                       aria-expanded="false">
                       <i class="bi bi-three-dots-vertical"></i>
                     </button>
@@ -39,15 +39,15 @@
                       <li><a class="dropdown-item" style="cursor: pointer;" (click)="delete(obj['id'])"><i class="fa fa-trash"></i> Eliminar</a></li>
                     </ul>
                   </div>
-                  
-                   <!-- 
+
+                   <!--
                   <div class="btn-group">
                       <button type="button" style="border: none; background-color: transparent;" data-toggle="dropdown">
                         <i class="bi bi-three-dots-vertical"></i>
                       </button>
                       <div class="dropdown-menu">
-                          
-                          
+
+
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item text-danger"><i class="fa fa-sign-out-alt"></i> Salir</a>
                       </div>
@@ -74,5 +74,9 @@
       </div>
       <!-- /.card -->
     </div>
+  </div>
+
+  <div *ngIf="!cargando">
+    <h1>{{msg}}</h1>
   </div>
 </div>
