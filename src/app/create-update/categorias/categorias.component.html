@@ -1,0 +1,19 @@
+<div style="width: 100%; margin: auto;"> 
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="category">País</label>
+          <input type="text" class="form-control" id="category" formControlName="name" placeholder="Ingrese el nombre de la categoria">
+          <div *ngIf="errors.category" class="text-danger">
+            {{ errors.category[0] }}
+          </div>
+        </div>
+      </div>
+  
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="categoryForm.invalid">
+          {{ categoryId ? 'Actualizar categoria' : 'Crear categoria' }}
+        </button>
+      </div>
+    </form>
+  </div>

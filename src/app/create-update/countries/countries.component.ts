@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CRUDService } from '../../crud.service';
 import Swal from 'sweetalert2';
+import { log } from 'node:console';
 
 @Component({
   selector: 'app-countries',

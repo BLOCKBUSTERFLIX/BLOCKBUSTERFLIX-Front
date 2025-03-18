@@ -74,7 +74,7 @@ export class CitiesComponent implements OnInit {
   
   onSubmit(): void {
     if (this.cityForm.invalid) return;
-
+    console.log('URL completa:', window.location.href);
     this.errors = {};
 
     const request = this.cityId

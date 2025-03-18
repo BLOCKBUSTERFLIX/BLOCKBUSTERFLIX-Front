@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,7 @@ private urlBase:string
     return this.http.get<any>(`${this.urlBase}table/${table}`);
   }
   post(table: string, data: any): Observable<any>{
+    console.log('POST:', this.urlBase, 'Data:', data);
     return this.http.post<any>(`${this.urlBase}${table}`, data);
   }
   put(table: string, id:any,  data: any): Observable<any>{

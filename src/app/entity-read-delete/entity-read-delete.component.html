@@ -1,8 +1,8 @@
 <div style="margin-left: 5rem;">
   <div *ngIf="cargando">
-    <div class="row">
+    <div class="row" style="width: 95%;">
       <!-- TABLE: LATEST ORDERS -->
-      <div class="card">
+      <div class="card" >
         <div class="card-header">
           <h3 class="card-title">{{this.table}}</h3>
           <div class="card-tools">
@@ -12,8 +12,8 @@
           </div>
         </div>
         <!-- /.card-header -->
-        <div class="card-body " style="max-height: 80vh; overflow-y: auto">
-          <table class="table table-bordered table-striped" style="overflow-x: auto; overflow-y: auto; max-height: 80%;">
+        <div class="card-body " style="max-height: 85vh; overflow-y: auto;">
+          <table class="table table-bordered table-striped" style="overflow-x: auto; overflow-y: auto;">
             <thead>
             <tr>
               <th *ngFor="let colum of columns">{{ colum }}</th>
@@ -65,12 +65,6 @@
           </table>
           <!-- /.table-responsive -->
         </div>
-        <!-- /.card-body -->
-        <div class="card-footer clearfix">
-          <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-          <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
-        </div>
-        <!-- /.card-footer -->
       </div>
       <!-- /.card -->
     </div>
