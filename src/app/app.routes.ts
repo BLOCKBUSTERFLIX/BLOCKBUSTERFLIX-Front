@@ -29,6 +29,21 @@ export const routes: Routes = [
 
             { path: 'new/rentals', loadComponent: () => import('./create-update/rentals/rentals.component').then(m => m.RentalsComponent) },
             { path: 'update/rentals/:id', loadComponent: () => import('./create-update/rentals/rentals.component').then(m => m.RentalsComponent) },
+
+            { path: 'new/languages', loadComponent: () => import('./create-update/languages/languages.component').then(m => m.LanguagesComponent) },
+            { path: 'update/languages/:id', loadComponent: () => import('./create-update/languages/languages.component').then(m => m.LanguagesComponent) },
+
+            { path: 'new/addresses', loadComponent: () => import('./create-update/addresses/addresses.component').then(m => m.AddressesComponent) },
+            { path: 'update/addresses/:id', loadComponent: () => import('./create-update/addresses/addresses.component').then(m => m.AddressesComponent) },
+
+            { path: 'new/stores', loadComponent: () => import('./create-update/stores/stores.component').then(m => m.StoresComponent) },
+            { path: 'update/stores/:id', loadComponent: () => import('./create-update/stores/stores.component').then(m => m.StoresComponent) },
+
+            { path: 'new/payments', loadComponent: () => import('./create-update/payments/payments.component').then(m => m.PaymentsComponent) },
+            { path: 'update/payments/:id', loadComponent: () => import('./create-update/payments/payments.component').then(m => m.PaymentsComponent) },
+
+            { path: 'new/(staff)', loadComponent: () => import('./create-update/staff/staff.component').then(m => m.StaffComponent) },
+            { path: 'update/(staff)/:id', loadComponent: () => import('./create-update/staff/staff.component').then(m => m.StaffComponent) },
         ]
     },
     { path: '**', title: 'Not-found', loadComponent: ()=> import('./error-404/error-404.component').then(c => c.Error404Component)}
