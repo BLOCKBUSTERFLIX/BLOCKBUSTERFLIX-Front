@@ -48,6 +48,7 @@ export class EntityReadDeleteComponent {
         this.msg = response.msg;
       },
       (error) => {
+        console.log(error)
         if (error.name === 'TimeoutError') {
           this.all()
         } else {

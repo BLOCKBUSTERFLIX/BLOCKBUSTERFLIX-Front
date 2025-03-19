@@ -20,6 +20,15 @@ export const routes: Routes = [
             
             { path: 'new/categories', loadComponent: () => import('./create-update/categorias/categorias.component').then(m => m.CategoriasComponent) },
             { path: 'update/categories/:id', loadComponent: () => import('./create-update/categorias/categorias.component').then(m => m.CategoriasComponent) },
+
+            { path: 'new/customers', loadComponent: () => import('./create-update/customers/customers.component').then(m => m.CustomersComponent) },
+            { path: 'update/customers/:id', loadComponent: () => import('./create-update/customers/customers.component').then(m => m.CustomersComponent) },
+
+            { path: 'new/inventories', loadComponent: () => import('./create-update/inventories/inventories.component').then(m => m.InventoriesComponent) },
+            { path: 'update/inventories/:id', loadComponent: () => import('./create-update/inventories/inventories.component').then(m => m.InventoriesComponent) },
+
+            { path: 'new/rentals', loadComponent: () => import('./create-update/rentals/rentals.component').then(m => m.RentalsComponent) },
+            { path: 'update/rentals/:id', loadComponent: () => import('./create-update/rentals/rentals.component').then(m => m.RentalsComponent) },
         ]
     },
     { path: '**', title: 'Not-found', loadComponent: ()=> import('./error-404/error-404.component').then(c => c.Error404Component)}
