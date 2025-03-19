@@ -1,0 +1,65 @@
+<div style="width: 100%; margin: auto;"> 
+    <form [formGroup]="rentalForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+
+        <div class="form-group">
+            <label for="rental_date">Fecha de renta</label>
+            <input type="datetime-local" class="form-control" formControlName="rental_date" placeholder="Ingrese la fecha de renta">
+            <div *ngIf="errors.rental_date" class="text-danger">
+              {{ errors.rental_date[0] }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inventory_id">Numero de inventorario</label>
+            <select class="form-control" id="inventory_id" formControlName="inventory_id">
+              <option value="">Seleccione el numero de inventario</option>
+              <option *ngFor="let inventorie of inventories" [value]="inventorie.id">
+                {{ inventorie.id }}
+              </option>
+            </select>
+            <div *ngIf="errors.inventory_id" class="text-danger">
+              {{ errors.inventory_id[0] }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="customer_id">Cliente</label>
+            <select class="form-control" id="customer_id" formControlName="customer_id">
+              <option value="">Seleccione una cliente</option>
+              <option *ngFor="let customer of customers" [value]="customer.id">
+                {{ customer.first_name }}
+              </option>
+            </select>
+            <div *ngIf="errors.customer_id" class="text-danger">
+              {{ errors.customer_id[0] }}
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="return_date">Fecha de entrega</label>
+          <input type="datetime-local" class="form-control" formControlName="return_date" placeholder="Ingrese la fecha de entrega">
+          <div *ngIf="errors.return_date" class="text-danger">
+            {{ errors.return_date[0] }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="staff_id">Personal</label>
+          <select class="form-control" id="staff_id" formControlName="staff_id">
+            <option value="">Seleccione el personal</option>
+            <option *ngFor="let staf of staff" [value]="staf.id">
+              {{ staf.first_name }}
+            </option>
+          </select>
+          <div *ngIf="errors.staff_id" class="text-danger">
+            {{ errors.staff_id[0] }}
+          </div>
+      </div>
+      </div>
+  
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="rentalForm.invalid">
+          {{ rentalId ? 'Actualizar inventario' : 'Crear inventario' }}
+        </button>
+      </div>
+    </form>
+  </div>
