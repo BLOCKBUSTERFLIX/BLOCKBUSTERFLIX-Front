@@ -1,0 +1,20 @@
+<div style="width: 100%; margin: auto;">
+    <form [formGroup]="languageForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control" id="name" formControlName="name" placeholder="Ingrese el nombre">
+          <div *ngIf="errors.name" class="text-danger">
+            {{ errors.name[0] }}
+          </div>
+        </div>
+      </div>
+  
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="languageForm.invalid">
+          {{ languageId ? 'Actualizar idioma' : 'Crear idioma' }}
+        </button>
+      </div>
+    </form>
+  </div>
+  

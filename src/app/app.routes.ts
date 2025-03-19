@@ -39,11 +39,11 @@ export const routes: Routes = [
             { path: 'new/stores', loadComponent: () => import('./create-update/stores/stores.component').then(m => m.StoresComponent) },
             { path: 'update/stores/:id', loadComponent: () => import('./create-update/stores/stores.component').then(m => m.StoresComponent) },
 
-            { path: 'new/payments', loadComponent: () => import('./create-update/payments/payments.component').then(m => m.PaymentsComponent) },
-            { path: 'update/payments/:id', loadComponent: () => import('./create-update/payments/payments.component').then(m => m.PaymentsComponent) },
+            //{ path: 'new/payments', loadComponent: () => import('./create-update/payments/payments.component').then(m => m.PaymentsComponent) },
+            //{ path: 'update/payments/:id', loadComponent: () => import('./create-update/payments/payments.component').then(m => m.PaymentsComponent) },
 
-            { path: 'new/(staff)', loadComponent: () => import('./create-update/staff/staff.component').then(m => m.StaffComponent) },
-            { path: 'update/(staff)/:id', loadComponent: () => import('./create-update/staff/staff.component').then(m => m.StaffComponent) },
+            { path: 'new/staff', loadComponent: () => import('./create-update/staff/staff.component').then(m => m.StaffComponent) },
+            { path: 'update/staff/:id', loadComponent: () => import('./create-update/staff/staff.component').then(m => m.StaffComponent) },
         ]
     },
     { path: '**', title: 'Not-found', loadComponent: ()=> import('./error-404/error-404.component').then(c => c.Error404Component)}
