@@ -1,0 +1,69 @@
+<div style="width: 100%; margin: auto;"> 
+    <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+
+        <div class="form-group">
+            <label for="address">Dirección</label>
+            <input type="text" class="form-control" formControlName="address" placeholder="Ingrese la dirección">
+            <div *ngIf="errors.address" class="text-danger">
+              {{ errors.address[0] }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address2">Dirección 2</label>
+            <input type="text" class="form-control" formControlName="address2" placeholder="Ingrese la dirección 2">
+            <div *ngIf="errors.address2" class="text-danger">
+              {{ errors.address2[0] }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="district">Distrito</label>
+            <input type="text" class="form-control" formControlName="district" placeholder="Ingrese el distrito">
+            <div *ngIf="errors.district" class="text-danger">
+              {{ errors.district[0] }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="city_id">Ciudad</label>
+            <select class="form-control" id="city_id" formControlName="city_id">
+              <option value="">Seleccione la ciudad</option>
+              <option *ngFor="let city of cities" [value]="city.id">
+                {{ city.city }}
+              </option>
+            </select>
+            <div *ngIf="errors.city_id" class="text-danger">
+              {{ errors.city_id[0] }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="postal_code">Código postal</label>
+            <input type="text" class="form-control" formControlName="postal_code" placeholder="Ingrese el código postal">
+            <div *ngIf="errors.postal_code" class="text-danger">
+              {{ errors.postal_code[0] }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Télefono</label>
+            <input type="tel" class="form-control" formControlName="phone" placeholder="Ingrese el télefono">
+            <div *ngIf="errors.phone" class="text-danger">
+              {{ errors.phone[0] }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="location">Ubicación</label>
+            <input type="text" class="form-control" formControlName="location" placeholder="Ingrese la ubicación">
+            <div *ngIf="errors.location" class="text-danger">
+              {{ errors.location[0] }}
+            </div>
+        </div>
+      </div>
+  
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="addressForm.invalid">
+          {{ addressId ? 'Actualizar dirección' : 'Crear dirección' }}
+        </button>
+      </div>
+    </form>
+  </div>
