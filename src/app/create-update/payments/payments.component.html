@@ -1,0 +1,68 @@
+<div style="width: 100%; margin: auto;"> 
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+      <div class="card-body">
+                <div class="form-group">
+            <label for="customer_id">Cliente</label>
+            <select class="form-control" id="customer_id" formControlName="customer_id">
+              <option value="">Seleccione una cliente</option>
+              <option *ngFor="let customer of customers" [value]="customer.id">
+                {{ customer.first_name }}
+              </option>
+            </select>
+            <div *ngIf="errors.customer_id" class="text-danger">
+              {{ errors.customer_id[0] }}
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label for="staff_id">Personal</label>
+          <select class="form-control" id="staff_id" formControlName="staff_id">
+            <option value="">Seleccione el personal</option>
+            <option *ngFor="let staf of staff" [value]="staf.id">
+              {{ staf.first_name }}
+            </option>
+          </select>
+          <div *ngIf="errors.staff_id" class="text-danger">
+            {{ errors.staff_id[0] }}
+          </div>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="rental_id">Numero de renta</label>
+            <select class="form-control" id="rental_id" formControlName="rental_id">
+              <option value="">Seleccione el numero de inventario</option>
+              <option *ngFor="let rental of rentals" [value]="rental.id">
+                {{ rental.id }}
+              </option>
+            </select>
+            <div *ngIf="errors.rental_id" class="text-danger">
+              {{ errors.rental_id[0] }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Cantidad</label>
+            <input type="number" class="form-control" formControlName="amount" placeholder="Ingrese la cantidad">
+            <div *ngIf="errors.amount" class="text-danger">
+              {{ errors.amount[0] }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="payment_date">Fecha del pago</label>
+            <input type="datetime-local" class="form-control" formControlName="payment_date" placeholder="Ingrese la fecha del pago">
+            <div *ngIf="errors.payment_date" class="text-danger">
+              {{ errors.payment_date[0] }}
+            </div>
+        </div>
+
+      </div>
+  
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="paymentForm.invalid">
+          {{ paymentId ? 'Actualizar pago' : 'Crear pago' }}
+        </button>
+      </div>
+    </form>
+  </div>
