@@ -118,6 +118,7 @@ export class StoresComponent implements OnInit {
         });
       },
       error: (err) => {
+        console.log(err);
         if (err.status === 400 && err.error.errors) {
           this.errors = err.error.errors;
         } else {
