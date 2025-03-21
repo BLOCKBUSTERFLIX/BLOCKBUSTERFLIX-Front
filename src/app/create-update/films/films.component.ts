@@ -18,6 +18,9 @@ export class FilmsComponent implements OnInit{
   idiomaId: string | null = null;
   errors: any = {};
   languages: any[] = [];
+  opciones = ["Trailers", "Commentaries", "Deleted Scenes", "Behind the Scenes"];
+  ratings =  ['G', 'PG', 'PG-13', 'R', 'NC-17'];
+  seleccionados: string = "";
 
   constructor(
     private fb: FormBuilder,
@@ -27,15 +30,15 @@ export class FilmsComponent implements OnInit{
   ) {
     this.filmForm = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(255)]],
-      description: ['', [Validators.required]],
-      release_year: ['', [Validators.required, Validators.min(1900), Validators.max(2100)]],
+      description: [''],
+      release_year: ['', [Validators.min(1900), Validators.max(2100)]],
       language_id: ['', [Validators.required]],
       original_language_id: [''],
       rental_duration: ['', [Validators.required]],
       rental_rate: ['', [Validators.required]],
       length: ['', [Validators.required]],
       replacement_cost: ['', [Validators.required]],
-      rating: ['', [Validators.required]],
+      rating: [''],
       special_features: ['']
     });
 
@@ -58,6 +61,9 @@ export class FilmsComponent implements OnInit{
     this.crudService.get('films', this.filmId).subscribe(
       (response) => {
         if (response.data) {
+          this.seleccionados = response.data.special_features
+      ? response.data.special_features.split(",")
+      : [];
           this.filmForm.patchValue(response.data);
         }
       },
@@ -111,6 +117,7 @@ export class FilmsComponent implements OnInit{
         });
       },
       error: (err) => {
+        console.log(err)
         if (err.status === 400 && err.error.errors) {
           this.errors = err.error.errors;
         } else {
@@ -121,5 +128,21 @@ export class FilmsComponent implements OnInit{
         }
       }
     });
+  }
+  actualizarSeleccion(event: any) {
+    const valor = event.target.value;
+    let seleccionArray = this.seleccionados ? this.seleccionados.split(",") : [];
+
+    if (event.target.checked) {
+      seleccionArray.push(valor);
+    } else {
+      seleccionArray = seleccionArray.filter(item => item !== valor);
+    }
+
+    this.seleccionados = seleccionArray.join(",");
+    this.filmForm.patchValue({
+      special_features: this.seleccionados
+    });  
+    console.log(this.filmForm.value)
   }
 }

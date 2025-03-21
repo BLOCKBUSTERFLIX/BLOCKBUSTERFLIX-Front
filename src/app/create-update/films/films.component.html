@@ -1,4 +1,4 @@
-<div style="width: 100%; margin: auto;">
+<div style="width: 70vw; margin: auto;">
     <form [formGroup]="filmForm" (ngSubmit)="onSubmit()">
       <div class="card-body">
         <div class="form-group">
@@ -82,18 +82,30 @@
             {{ errors.replacement_cost[0] }}
           </div>
         </div>
-  
+
         <div class="form-group">
-          <label for="rating">Calificación</label>
-          <input type="text" class="form-control" id="rating" formControlName="rating" placeholder="Ingrese la calificación">
+          <label for="rating">Clasificación</label>
+          <select class="form-control" id="rating" formControlName="rating">
+            <option value="">Seleccione una clasificación</option>              
+            <option *ngFor="let rating of ratings" [value]="rating">
+              {{ rating }}
+            </option>
+          </select>
           <div *ngIf="errors.rating" class="text-danger">
             {{ errors.rating[0] }}
           </div>
         </div>
-  
         <div class="form-group">
           <label for="special_features">Características especiales</label>
-          <input type="text" class="form-control" id="special_features" formControlName="special_features" placeholder="Ingrese las características especiales">
+          <div *ngFor="let opcion of opciones">
+              <div class="form-check">
+                  <label class="form-check-label" for="special_features_checkbox">
+                      <input class="form-check-input" type="checkbox" id="special_features_checkbox" [value]="opcion" (change)="actualizarSeleccion($event)" [checked]="seleccionados.includes(opcion)">
+                      {{ opcion }}
+                  </label>
+              </div>
+            </div>
+          
           <div *ngIf="errors.special_features" class="text-danger">
             {{ errors.special_features[0] }}
           </div>
