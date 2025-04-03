@@ -1,0 +1,29 @@
+<nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+    <div class="container">
+      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+        </ul>
+      </div>
+  
+      <!-- Right navbar links -->
+      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+        <li *ngIf="hidden" class="nav-item">
+          <a (click)="logOut()" class="nav-link" role="button">
+            <i class="nav-icon fas fa-sign-out-alt"></i> Cerrar sesión
+          </a>
+        </li>
+      
+        <li *ngIf="!hidden" class="nav-item">
+          <a routerLink="/login" class="nav-link" role="button">
+            <i class="nav-icon fas fa-sign-in-alt"></i> Iniciar sesión
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  

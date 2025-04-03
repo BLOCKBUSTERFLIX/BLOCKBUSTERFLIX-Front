@@ -63,9 +63,8 @@ export class EntityReadDeleteComponent {
       timeout(10000)
     ).subscribe(
       (response) => {
-        console.log(response)
         if (response) {
-          this.columns = response;
+          this.columns = Object.values(response);
         }
       },
       (error) => {

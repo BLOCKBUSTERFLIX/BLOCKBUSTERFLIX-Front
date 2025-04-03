@@ -31,6 +31,8 @@ private urlBase:string
   delete(table: string, id:number): Observable<any>{
     return this.http.delete<any>(`${this.urlBase}${table}/${id}`);
   }
+  
+  
 
 
 }
