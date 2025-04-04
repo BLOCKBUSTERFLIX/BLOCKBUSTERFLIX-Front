@@ -18,6 +18,7 @@ export class StaffComponent implements OnInit {
   errors: any = {};
   stores: any[] = [];
   addresses: any[] = [];
+  roles: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -34,7 +35,9 @@ export class StaffComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       active: [true, [Validators.required]],
       username: ['', [Validators.required, Validators.maxLength(255)]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      role_id: ['', [Validators.required]]
+ 
     });
 
     this.route.params.subscribe(params => {
@@ -47,10 +50,22 @@ export class StaffComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStores();
+    this.loadRoles();
     this.getAddresses();
     if (this.staffId) {
       this.getStaff();
     }
+  }
+
+  loadRoles() {
+    this.crudService.all("roles").subscribe(
+      (response) => {
+        this.roles = response.data;
+      },
+      (error) => {
+        console.error("Error al cargar roles", error);
+      }
+    );
   }
 
   getStaff(): void {
