@@ -146,7 +146,7 @@ export class RentalsComponent implements OnInit {
     );
   }
   loadStaff() {
-    this.crudService.all("staffs").subscribe(
+    this.crudService.all("staff").subscribe(
       (response) => {
         this.staff = response.data;
         console.log(this.staff)

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -10,9 +10,15 @@ import { RouterModule } from '@angular/router';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements AfterViewInit {
+  username = signal<string | null>(null);
   constructor(private el: ElementRef){}
 
   ngAfterViewInit(): void {
+    if(localStorage.getItem('username') != ""){
+      this.username.set(localStorage.getItem('username'));
+    }else{
+      this.username.set('Equipo 7')
+    }
     this.initializeSidebar();
   }
 

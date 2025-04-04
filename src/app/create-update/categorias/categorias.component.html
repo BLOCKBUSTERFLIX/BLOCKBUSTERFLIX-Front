@@ -2,7 +2,7 @@
     <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
       <div class="card-body">
         <div class="form-group">
-          <label for="category">País</label>
+          <label for="category">Categoría</label>
           <input type="text" class="form-control" id="category" formControlName="name" placeholder="Ingrese el nombre de la categoria">
           <div *ngIf="errors.category" class="text-danger">
             {{ errors.category[0] }}

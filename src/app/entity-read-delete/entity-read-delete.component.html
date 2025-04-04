@@ -21,7 +21,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let obj of data">
+            <tr *ngFor="let obj of data  | paginate: { itemsPerPage: 8, currentPage: p }">
               <td *ngFor="let column of columns">{{ obj[column] }}</td>
               <td>
                 <div class="wrapper p-3">
@@ -55,6 +55,9 @@
                 </div>
               </td>
             </tr>
+            <tr *ngIf="data.length === 0">
+              <td [attr.colspan]="columns?.length + 1" class="text-center">{{ mensaje() || 'No se encontraron datos.' }}</td>
+            </tr>            
             </tbody>
             <tfoot>
               <tr>
@@ -63,6 +66,8 @@
               </tr>
             </tfoot>
           </table>
+          <br>
+            <pagination-controls (pageChange)="p = $event" [responsive]="true"></pagination-controls>
           <!-- /.table-responsive -->
         </div>
       </div>

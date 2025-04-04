@@ -19,6 +19,22 @@ export class AuthService {
     return this.http.post(`${this.urlBase}login`, userData);
   }
 
+  verificationCode(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}verify-2fa`, data);
+  }
+
+  sendRecoveryCode(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}recovery-account-code`, data);
+  }
+
+  verifyRecoveryCode(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}recovery-account-verification`, data);
+  }
+
+  resetPassword(data: any): Observable<any> {
+    return this.http.post(`${this.urlBase}recovery-account`, data);
+  }
+
   info(): Observable<any>{
     return this.http.get<any>(`${this.urlBase}info`);
   }

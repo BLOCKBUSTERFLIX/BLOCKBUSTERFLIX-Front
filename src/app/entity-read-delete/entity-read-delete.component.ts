@@ -1,24 +1,27 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CRUDService } from '../crud.service';
 import { timeout } from 'rxjs';
 import Swal from 'sweetalert2';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-entity-read-delete',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgxPaginationModule],
   templateUrl: './entity-read-delete.component.html',
   styleUrl: './entity-read-delete.component.css'
 })
 export class EntityReadDeleteComponent {
+  p: number = 1;
   table: string = '';
   msg: string = "Cargando..."
   cargando: boolean = false
   data: any = []
   columns: any = null
+  mensaje = signal<string>("");
 
   constructor(private router: Router, private route: ActivatedRoute, private crudService: CRUDService, private fb: FormBuilder) {
     this.route.params.subscribe(params => {
@@ -43,6 +46,7 @@ export class EntityReadDeleteComponent {
       (response) => {
         this.cargando = true
         if (response.data) {
+          this.p = 1;
           this.data = response.data;
         }
         this.msg = response.msg;
@@ -51,8 +55,12 @@ export class EntityReadDeleteComponent {
         console.log(error)
         if (error.name === 'TimeoutError') {
           this.all()
-        } else {
+        } else if (error.status === 404){
           this.router.navigate(['not-found']);
+        }else if (error.status === 403){
+          this.router.navigate(['403-Forbidden']);
+        }else if (error.status === 401){
+          this.mensaje.set("No se encontraron datos");
         }
       }
     );
@@ -68,10 +76,13 @@ export class EntityReadDeleteComponent {
         }
       },
       (error) => {
+        console.log(error.name);
         if (error.name === 'TimeoutError') {
           this.tableInfo()
-        } else {
+        } else if (error.status === 404){
           this.router.navigate(['not-found']);
+        }else if (error.status === 403){
+          this.router.navigate(['403-Forbidden']);
         }
       }
     );
@@ -105,6 +116,8 @@ export class EntityReadDeleteComponent {
               this.all()
             } else if (error.status === 404) {
               this.router.navigate(['not-found']);
+            }else if (error.status === 403){
+              this.router.navigate(['403-Forbidden']);
             } else {
               Swal.fire({
                 title: "Hubo un error!",

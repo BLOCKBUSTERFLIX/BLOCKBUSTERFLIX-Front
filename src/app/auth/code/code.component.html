@@ -6,11 +6,11 @@
         <!-- /.login-logo -->
         <div class="card">
           <div class="card-body login-card-body">
-            <p class="login-box-msg">...</p>
+            <p class="login-box-msg">{{ mensaje() }}</p>
       
-            <form action="login.html" method="post">
+            <form [formGroup]="codeForm" (ngSubmit)="onSubmit()">
               <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Code">
+                <input formControlName="code" type="code" class="form-control" placeholder="Code">
                 <div class="input-group-append">
                   <div class="input-group-text">
                     <span class="fa fa-check"></span>

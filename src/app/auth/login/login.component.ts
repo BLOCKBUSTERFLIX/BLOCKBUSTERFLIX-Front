@@ -39,15 +39,16 @@ export class LoginComponent implements OnInit{
 
     this.service.login(userData).subscribe(
       (response) => {
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('email', response.data.email);
+        localStorage.setItem('verification', response.data.verification);
         Swal.fire({
           icon: "success",
-          title: "Login exitoso!!!",
-          text: "Se te redireccionara a la pagina de inicio",
+          title: "Código de verificación enviado al correo",
+          text: "Se ha enviado un correo de verificación a tu correo.",
           showConfirmButton: false,
           timer: 1500,
           didClose: () => {
-            this.router.navigate(['']);
+            this.router.navigate(['/code']);
           }
         });
       },

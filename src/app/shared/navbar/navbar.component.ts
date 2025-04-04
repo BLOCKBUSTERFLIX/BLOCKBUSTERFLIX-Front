@@ -49,6 +49,7 @@ export class NavbarComponent {
           (response) => {
             this.hidden = false;
             localStorage.removeItem('token');
+            localStorage.removeItem('username');
             Swal.fire({
               icon: "success",
               title: "Cuenta cerrada",
